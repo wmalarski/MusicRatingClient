@@ -2,6 +2,7 @@ node_modules
 
 HELP.md
 /target/
+/dist
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
