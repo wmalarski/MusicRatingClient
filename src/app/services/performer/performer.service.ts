@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PerformerList, Performer, PerformerForm } from '../../model/performer';
-import { api } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PerformerService {
 
-  private URL_PERFORMERS = api + '/performers';
+  private URL_PERFORMERS = environment.api + '/performers';
   private URL_PERFORMERS_SAVE = this.URL_PERFORMERS + '/save'
   private URL_SEARCH = this.URL_PERFORMERS + '/search/findByQuery';
 

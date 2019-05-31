@@ -1,5 +1,4 @@
 export const environment = {
   production: true,
-  api:'http://localhost:8080'
+  api:'https://musicrating.herokuapp.com/'
 };
-export const api = 'http://localhost:8080';
