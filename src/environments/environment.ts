@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api:'https://musicrating.herokuapp.com/'
+  api:'https://musicrating.herokuapp.com'
 };
 
 /*
