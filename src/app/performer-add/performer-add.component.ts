@@ -32,7 +32,6 @@ export class PerformerAddComponent implements OnInit {
           const performer = new PerformerForm();
           performer.name = data['name'];
           performer.albums = data['albums']
-          console.log('switchMap', data)
           return this.performerService.save(performer);
         }),
         catchError((e) => {

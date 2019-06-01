@@ -14,7 +14,7 @@ export class RatingService {
 
   private URL_RATINGS = environment.api + '/ratings';
   private URL_RATINGS_SAVE = this.URL_RATINGS + '/save';
-  private URL_FIND_USER = this.URL_RATINGS + '/search/username';
+  private URL_FIND_USER = this.URL_RATINGS + '/search/findByUserName';
   private URL_FIND_ALBUM = this.URL_RATINGS + '/search/findByAlbum';
 
   constructor(private http: HttpClient) { }

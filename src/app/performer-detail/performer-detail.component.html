@@ -1,10 +1,10 @@
 <mat-card>
-  <mat-card-title *ngIf="_performer">{{_performer.name}}</mat-card-title>
+  <mat-card-title *ngIf="_performer">Artist Details: {{_performer.name}}</mat-card-title>
 
   <mat-card-actions *ngIf="_performer && authorities.includes('ROLE_USER')" >
-      <button mat-button [routerLink]="['/performer', _performer.performerId, 'edit']">Edit</button>
-      <button mat-button [routerLink]="['/performer', _performer.performerId, 'add']">Add album</button>
-      <button mat-button (click)="remove()">Remove</button>
+      <button mat-raised-button [routerLink]="['/performer', _performer.performerId, 'edit']" color="primary">Edit</button>
+      <button mat-raised-button [routerLink]="['/performer', _performer.performerId, 'add']" color="primary">Add album</button>
+      <button mat-raised-button (click)="remove()" color="warn">Remove</button>
   </mat-card-actions>
 
   <mat-card-content>

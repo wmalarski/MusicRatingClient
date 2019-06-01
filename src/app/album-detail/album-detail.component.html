@@ -1,13 +1,13 @@
 <mat-card>
-  <mat-card-title *ngIf="album">{{album.title}} {{album.name}} {{album.year}}</mat-card-title>
+  <mat-card-title *ngIf="album">Album Details: {{album.name}}-{{album.title}} ({{album.year}})</mat-card-title>
 
   <mat-card-actions *ngIf="album">
     <button mat-button [routerLink]="['/performer', album.performerId, 'details']">{{album.name}}</button>
 
     <div *ngIf="authorities.includes('ROLE_USER')">
-      <button mat-button [routerLink]="['/album', album.albumId, 'edit']">Edit</button>
-      <button mat-button [routerLink]="['/album', album.albumId, 'rate']">Rate</button>
-      <button mat-button (click)="remove()">Remove</button>
+      <button mat-raised-button [routerLink]="['/album', album.albumId, 'edit']" color="primary">Edit</button>
+      <button mat-raised-button [routerLink]="['/album', album.albumId, 'rate']" color="accent">Rate</button>
+      <button mat-raised-button (click)="remove()" color="warn">Remove</button>
     </div>
   </mat-card-actions>
 

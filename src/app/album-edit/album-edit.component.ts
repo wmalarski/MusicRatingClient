@@ -48,7 +48,11 @@ export class AlbumEditComponent implements OnInit, OnDestroy {
   }
 
   goBack() {
-    this.router.navigate(['/album', this.album.albumId, 'details']);
+    if (this.album.albumId) {
+      this.router.navigate(['/album', this.album.albumId, 'details']);
+    } else {
+      this.router.navigate(['/performer', this.album.performerId, 'details']);
+    }
   }
 
   save(form: NgForm) {
