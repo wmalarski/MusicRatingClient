@@ -6,6 +6,7 @@ import { AuthLoginInfo } from './login-info';
 import { JwtResponse } from './jwt-response';
 import { SignUpInfo } from './signup-info';
 import { environment } from 'src/environments/environment';
+import { User } from 'src/app/model/user';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,8 +17,11 @@ const httpOptions = {
 })
 export class AuthService {
   
-  private loginUrl = environment.api + '/api/auth/signin';
-  private signupUrl = environment.api + '/api/auth/signup';
+  private URL = environment.api + '/api/auth/'
+  private loginUrl = this.URL + 'signin';
+  private signupUrl = this.URL + 'signup';
+  private URL_GRAND = this.URL + 'grand';
+  private URL_REVOKE = this.URL + 'revoke';
  
   constructor(private http: HttpClient) {
   }
@@ -28,5 +32,19 @@ export class AuthService {
  
   signUp(info: SignUpInfo): Observable<string> {
     return this.http.post<string>(this.signupUrl, info, httpOptions);
+  }
+
+  grand(role: string, user: User): Observable<Object> {
+    return this.http.put(this.URL_GRAND, {
+      username: user.username,
+      role: role
+    });
+  }
+
+  revoke(role: string, user: User): Observable<Object> {
+    return this.http.put(this.URL_REVOKE, {
+      username: user.username,
+      role: role
+    });
   }
 }

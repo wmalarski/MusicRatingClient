@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  api:'https://musicrating.herokuapp.com'
-  // api:'http://localhost:8080'
+  // api:'https://musicrating.herokuapp.com'
+  api:'http://localhost:8080'
 };
 
 /*

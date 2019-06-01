@@ -11,12 +11,13 @@ export class UserService {
 
   private URL_USERS = environment.api + '/users';
   private URL_QUERY = this.URL_USERS + '/query';
+  private URL_REMOVE = this.URL_USERS + '/remove';
 
   constructor(private http: HttpClient) { }
  
   findAll(pageSize: number, pageIndex: number): Observable<UserList> {
     return this.http.get<UserList>(this.URL_USERS, {
-      params:{
+      params: {
         size: pageSize.toString(),
         page: pageIndex.toString(),
       }});
@@ -24,11 +25,18 @@ export class UserService {
 
   findByName(query: string, pageSize: number, pageIndex: number): Observable<UserList> {
     return this.http.get<UserList>(this.URL_QUERY, {
-      params:{
+      params: {
         query: query,
         size: pageSize.toString(),
         page: pageIndex.toString(),
       }});
   }
 
+  remove(user: User): Observable<Object> {
+    return this.http.delete(this.URL_REMOVE, {
+      params: {
+        username: user.username
+      }
+    });
+  }
 }

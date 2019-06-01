@@ -6,6 +6,6 @@ export class SignUpInfo {
     constructor(username: string, password: string) {
         this.username = username;
         this.password = password;
-        this.role = ['user'];
+        this.role = ['ROLE_USER'];
     }
 }

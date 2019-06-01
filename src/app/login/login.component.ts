@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
   }
  
   onSubmit() {
-    console.log(this.form);
  
     this.loginInfo = new AuthLoginInfo(
       this.form.username,
@@ -48,7 +47,6 @@ export class LoginComponent implements OnInit {
         this.reloadPage();
       },
       error => {
-        console.log(error);
         this.errorMessage = error.error.message;
         this.isLoginFailed = true;
       }
