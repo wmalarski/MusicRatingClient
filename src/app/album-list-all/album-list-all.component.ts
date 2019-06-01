@@ -43,8 +43,8 @@ export class AlbumListAllComponent implements OnInit {
         map(data => {
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
-          this.resultsLength = data.page.totalElements;
-          return data._embedded.albums;
+          this.resultsLength = data.page.totalElements;     
+          return this.resultsLength > 0 ? data._embedded.albums : [];
         }),
         catchError((e) => {
           console.error('Error', e)

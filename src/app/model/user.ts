@@ -18,7 +18,7 @@ export class User {
 export class UserList {
 
     _embedded: {
-        users: User[];
+        userResponses: User[];
     };
     _links: {
         self: {

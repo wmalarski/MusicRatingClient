@@ -14,8 +14,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
  
-  getAdminBoard(pageSize: number, pageIndex: number): Observable<User> {
-    return this.http.get<User>(this.URL_USERS, {
+  findAll(pageSize: number, pageIndex: number): Observable<UserList> {
+    return this.http.get<UserList>(this.URL_USERS, {
       params:{
         size: pageSize.toString(),
         page: pageIndex.toString(),

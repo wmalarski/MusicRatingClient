@@ -15,6 +15,7 @@ export class AdminComponent implements OnInit {
 
   users: User[];
   columnsToDisplay = ['username', 'ratings', 'average'];
+  allColumnsToDisplay = ['username', 'ratings', 'average', 'admin', 'user', 'remove']
   authorities: string[] = [];
 
   resultsLength = 0;
@@ -45,13 +46,18 @@ export class AdminComponent implements OnInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
+          if (this.query == '') {
+            return this.userService.findAll(this.paginator.pageSize, this.paginator.pageIndex);            
+          }
           return this.userService.findByName(this.query, this.paginator.pageSize, this.paginator.pageIndex);
         }),
         map(data => {
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
           this.resultsLength = data.page.totalElements;
-          return data._embedded.users;
+          if (this.resultsLength == 0) 
+            return [];
+          return data._embedded.userResponses;
         }),
         catchError((e) => {
           console.error('Error', e)
