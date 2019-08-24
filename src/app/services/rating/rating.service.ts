@@ -14,8 +14,8 @@ export class RatingService {
 
   private URL_RATINGS = environment.api + '/ratings';
   private URL_RATINGS_SAVE = this.URL_RATINGS + '/save';
-  private URL_FIND_USER = this.URL_RATINGS + '/search/findByUserName';
-  private URL_FIND_ALBUM = this.URL_RATINGS + '/search/findByAlbum';
+  private URL_FIND_USER = this.URL_RATINGS + '/user';
+  private URL_FIND_ALBUM = this.URL_RATINGS + '/album';
 
   constructor(private http: HttpClient) { }
 
@@ -30,7 +30,7 @@ export class RatingService {
   findByUser(user: User, size: number, page: number): Observable<RatingList> {
     return this.http.get<RatingList>(this.URL_FIND_USER, {
       params: {
-        username: user.username,
+        user: user.username,
         size: size.toString(),
         page: page.toString()      
       }
@@ -55,9 +55,12 @@ export class RatingService {
     return this.http.get<Rating>(this.URL_RATINGS + '/' + ratingId);
   }
 
-  remove(rating: Rating): Observable<{}> {
-    const href = rating._links.rating.href; 
-    return this.http.delete(href);
+  remove(rating: Rating): Observable<{}> { 
+    return this.http.delete(this.URL_RATINGS, {
+      params: {
+        
+      }
+    });
   }
 
 

@@ -10,8 +10,7 @@ import { environment } from 'src/environments/environment';
 export class PerformerService {
 
   private URL_PERFORMERS = environment.api + '/performers';
-  private URL_PERFORMERS_SAVE = this.URL_PERFORMERS + '/save'
-  private URL_SEARCH = this.URL_PERFORMERS + '/search/findByQuery';
+  private URL_SEARCH = this.URL_PERFORMERS + "/query";
 
   constructor(private http: HttpClient) { }
 
@@ -42,15 +41,18 @@ export class PerformerService {
   }
 
   save(performerForm: PerformerForm): Observable<Performer> {
-    return this.http.post(this.URL_PERFORMERS_SAVE, performerForm);
+    return this.http.post(this.URL_PERFORMERS, performerForm);
   }
 
   update(performerForm: PerformerForm): Observable<Performer> {
-    return this.http.put(this.URL_PERFORMERS_SAVE, performerForm);
+    return this.http.put(this.URL_PERFORMERS, performerForm);
   }
 
   remove(performer: Performer): Observable<Object> {
-    const href = performer._links.performer.href; 
-    return this.http.delete(href);
+    return this.http.delete(this.URL_PERFORMERS, {
+      params: {
+        performerId: performer.performerId.toString()
+      }
+    });
   }
 }

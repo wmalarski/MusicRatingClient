@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class AuthService {
   
-  private URL = environment.api + '/api/auth/'
+  private URL = environment.api + '/auth/'
   private loginUrl = this.URL + 'signin';
   private signupUrl = this.URL + 'signup';
   private URL_GRAND = this.URL + 'grand';

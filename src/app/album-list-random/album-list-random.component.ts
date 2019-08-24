@@ -25,6 +25,7 @@ export class AlbumListRandomComponent implements OnInit {
 
   @ViewChild(AlbumListComponent) albumList: AlbumListComponent;
 
+  
   constructor(
     private albumService: AlbumService
   ) { }

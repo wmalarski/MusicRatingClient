@@ -1,38 +1,50 @@
 <mat-toolbar color="primary">
-  <span>Welcome to {{title}}!</span>
-</mat-toolbar>
+  <span>{{title}}</span>
 
-<mat-toolbar>
   <span>
-      <a mat-button routerLink="/random">Random</a>
-  </span>
-  <span>
-      <a mat-button routerLink="/performers">Artists</a>
-  </span>
-  <span>
-      <a mat-button routerLink="/albums">Albums</a>
-  </span>
-  <span>
-    <a mat-button routerLink="/ratings">Ratings</a>
-  </span>
-  
-  <span *ngIf="authority === 'user'">
-    <a mat-button [routerLink]="['/user', loggedUser]">{{loggedUser}}</a>
-  </span>
-  <span *ngIf="authority === 'admin'">
-    <a mat-button routerLink="admin">Admin Board</a>
-  </span>
-  <span *ngIf="!authority">
-    <a mat-button routerLink="auth/login">Login</a>
-  </span>
-  <span *ngIf="!authority">
-    <a mat-button routerLink="signup">Sign Up</a>
-  </span>
-  <span *ngIf="authority">
-    <button mat-button (click)="logout()">Logout</button>
-  </span>
+    <a mat-button routerLink="/random">
+      <mat-icon>home</mat-icon> Home</a>
+</span>
+<span>
+    <a mat-button routerLink="/performers">
+      <mat-icon>library_books</mat-icon> Artists</a>
+</span>
+<span>
+    <a mat-button routerLink="/albums">
+      <mat-icon>album</mat-icon> Albums</a>
+</span>
+<span>
+  <a mat-button routerLink="/ratings">
+    <mat-icon>queue_music</mat-icon> Ratings</a>
+</span>
 
+<span class="example-spacer"></span>
 
+<span *ngIf="authority === 'user'">
+  <a mat-button [routerLink]="['/user', loggedUser]">
+    <mat-icon>account_circle</mat-icon>
+    {{loggedUser}}
+  </a>
+</span>
+<span *ngIf="authority === 'admin'">
+  <a mat-button routerLink="admin">
+      <mat-icon>verified_user</mat-icon> Admin Board</a>
+</span>
+<span *ngIf="!authority">
+  <a mat-button routerLink="auth/login">
+    <mat-icon>exit_to_app</mat-icon> Login
+  </a>
+</span>
+<span *ngIf="!authority">
+  <a mat-button routerLink="signup">
+      <mat-icon>person_add</mat-icon> Sign Up
+  </a>
+</span>
+<span *ngIf="authority">
+  <button mat-button (click)="logout()"class="example-icon">
+      <mat-icon>power_setting_new</mat-icon> Logout
+  </button>
+</span>
 
 </mat-toolbar>
 

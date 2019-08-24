@@ -22,16 +22,24 @@
 
     <ng-container matColumnDef="expandedDetail">
         <td mat-cell *matCellDef="let album" [attr.colspan]="columnsToDisplay.length">
-            <div class="element-detail"
-                [@detailExpand]="album == expandedElement ? 'expanded' : 'collapsed'">
-                <button mat-raised-button [routerLink]="['/performer', album.performerId, 'details']">{{album.name}} Details</button>
-                <button mat-raised-button [routerLink]="['/album', album.albumId, 'details']">Album Details</button>
+            <div class="element-detail" [@detailExpand]="album == expandedElement ? 'expanded' : 'collapsed'">
                 
-                <div *ngIf="authorities.includes('ROLE_USER')">
-                  <button mat-raised-button [routerLink]="['/album', album.albumId, 'rate']" color="accent">Rate</button>
-                  <button mat-raised-button [routerLink]="['/album', album.albumId, 'edit']" color="primary">Edit</button>
-                  <button mat-raised-button (click)="remove(album)" color="warn">Remove</button>
-                </div>
+                <mat-toolbar class="example-button-row">  
+                    <!-- <mat-toolbar-row > -->
+                      <span><button mat-flat-button [routerLink]="['/performer', album.performerId, 'details']"><mat-icon>library_books</mat-icon> {{album.name}} Details</button></span>
+                      <span><button mat-flat-button [routerLink]="['/album', album.albumId, 'details']"><mat-icon>album</mat-icon> Album Details</button></span>
+                    <!-- </mat-toolbar-row> -->
+
+                    <span class="example-spacer"></span>
+                  
+                    <div *ngIf="authorities.includes('ROLE_USER')">
+                      <span><button mat-flat-button [routerLink]="['/album', album.albumId, 'rate']" color="accent"><mat-icon>rate_review</mat-icon> Rate</button></span>
+                      <span><button mat-flat-button [routerLink]="['/album', album.albumId, 'edit']" color="primary"><mat-icon>edit</mat-icon> Edit</button></span>
+                      <span><button mat-flat-button (click)="remove(album)" color="warn"><mat-icon>delete</mat-icon> Remove</button></span>
+                    </div>
+                    
+                  <!-- </mat-toolbar-row> -->
+                </mat-toolbar>
             </div>
           </td>
       </ng-container>

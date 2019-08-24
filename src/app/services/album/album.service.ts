@@ -11,8 +11,8 @@ import { environment } from 'src/environments/environment';
 export class AlbumService {
 
   private URL_ALBUMS = environment.api + '/albums';
-  private URL_SEARCH = this.URL_ALBUMS + '/search/findByQuery';
-  private URL_PERFORMER = this.URL_ALBUMS + '/search/findByPerformerId'
+  private URL_SEARCH = this.URL_ALBUMS + '/query';
+  private URL_PERFORMER = this.URL_ALBUMS + '/performer'
   private URL_RANDOM = environment.api;
 
   constructor(private http: HttpClient) { }
@@ -66,7 +66,10 @@ export class AlbumService {
   }
 
   remove(album: Album): Observable<Object>{
-    const href = album._links.album.href; 
-    return this.http.delete(href);
+    return this.http.delete(this.URL_ALBUMS, {
+      params: {
+        albumId: album.albumId.toString()
+      }
+    });
   }
 }

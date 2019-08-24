@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule, MatMenuModule, MatProgressSpinnerModule, MatPaginatorModule, MatSortModule, MatSliderModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule, MatMenuModule, MatProgressSpinnerModule, MatPaginatorModule, MatSortModule, MatSliderModule, MatIconModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
@@ -70,6 +70,7 @@ import { httpInterceptorProviders } from './services/auth/auth-interceptor';
     MatSortModule,
     ReactiveFormsModule,
     MatSliderModule,
+    MatIconModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

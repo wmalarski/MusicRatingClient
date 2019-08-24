@@ -16,3 +16,6 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
+// wykresy. rest - stan po stronie klienta. Sesje. Web tokeny. Sesyjny Serwer jaka technologia zrobiona. jakie zapytania chemy obsłużyć.
+// cześć klienta.

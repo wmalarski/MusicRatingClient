@@ -1,17 +1,41 @@
 <mat-card>
-  <mat-card-title>Random Album List</mat-card-title>
+  <mat-card-title>
+    Random Albums
+    <button mat-icon-button color="secondary" (click)="refresh()" type="button">
+        <mat-icon>refresh</mat-icon>
+      </button>
+  </mat-card-title>
 
   <mat-card-actions>
-    <button mat-raised-button color="secondary" (click)="refresh()" 
-            type="button">Refresh</button>
-    <button mat-raised-button color="secondary" 
+
+    <mat-toolbar>
+        <mat-toolbar-row class="example-button-row">
+          <!-- <mat-list> -->
+              <!-- <mat-list-item class="example-button-row"> -->
+          <button mat-flat-button color="secondary" 
             (click)="loadHref(item.value.href)" 
             *ngFor="let item of decades | keyvalue"
-            type="button">{{item.value.name}}</button>
-    <button mat-raised-button color="secondary" 
-            (click)="loadHref(item.value.href)" 
-            *ngFor="let item of years | keyvalue"
-            type="button">{{item.value.name}}</button>
+            type="button">
+            {{item.value.name}} 
+          </button>
+          <!-- </mat-list-item> -->
+          <!-- <mat-list-item *ngIf="(years | json) != ({} | json)" class="example-button-row"> -->
+
+        </mat-toolbar-row>
+
+      <mat-toolbar-row *ngIf="(years | json) != ({} | json)" class="example-button-row">
+
+        <button mat-flat-button color="secondary" 
+        (click)="loadHref(item.value.href)" 
+        *ngFor="let item of years | keyvalue"
+        type="button">
+        {{item.value.name}} 
+      </button>
+    <!-- </mat-list-item> -->
+    <!-- </mat-list> -->
+
+      </mat-toolbar-row>
+    </mat-toolbar>
   </mat-card-actions>
 
   <mat-card-content>
@@ -22,6 +46,7 @@
     [isLoadingResults]="isLoadingResults" 
     [isRateLimitReached]="isRateLimitReached"
     matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
+
   </app-album-list>
     
 
