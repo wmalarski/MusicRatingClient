@@ -1,4 +1,4 @@
-<div class="container mat-elevation-z8">
+<div class="container">
 
   <div class="loading-shade"
     *ngIf="isLoadingResults || isRateLimitReached">
@@ -12,8 +12,7 @@
 
   <table mat-table
         [dataSource]="albums" multiTemplateDataRows
-        matSort matSortActive="created" matSortDisableClear matSortDirection="desc"
-        class="mat-elevation-z8">
+        matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
 
     <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
       <th mat-header-cell *matHeaderCellDef> {{column}} </th>
@@ -26,8 +25,8 @@
                 
                 <mat-toolbar class="example-button-row">  
                     <!-- <mat-toolbar-row > -->
-                      <span><button mat-flat-button [routerLink]="['/performer', album.performerId, 'details']"><mat-icon>library_books</mat-icon> {{album.name}} Details</button></span>
-                      <span><button mat-flat-button [routerLink]="['/album', album.albumId, 'details']"><mat-icon>album</mat-icon> Album Details</button></span>
+                      <span><button mat-flat-button [routerLink]="['/performer', album.performerId, 'details']"><mat-icon>library_books</mat-icon> {{album.name}}</button></span>
+                      <span><button mat-flat-button [routerLink]="['/album', album.albumId, 'details']"><mat-icon>album</mat-icon> Details</button></span>
                     <!-- </mat-toolbar-row> -->
 
                     <span class="example-spacer"></span>

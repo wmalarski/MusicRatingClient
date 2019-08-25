@@ -1,4 +1,4 @@
-<div class="container mat-elevation-z8">
+<div>
 
 
 <div class="loading-shade"
@@ -25,14 +25,19 @@
           <div class="element-detail"
                [@detailExpand]="rating == expandedElement ? 'expanded' : 'collapsed'">
                <p>{{rating.description}}</p>
-               <button mat-raised-button [routerLink]="['/user', rating.userName]">{{rating.userName}}</button>
-               <button mat-raised-button [routerLink]="['/album', rating.albumId, 'details']">{{rating.title}}</button>
-               <button mat-raised-button [routerLink]="['/performer', rating.performerId, 'details']">{{rating.name}}</button>
+
+               <mat-toolbar class="example-button-row">
+
+
+               <span><button mat-flat-button [routerLink]="['/user', rating.userName]">{{rating.userName}}</button></span>
+               <span><button mat-flat-button [routerLink]="['/album', rating.albumId, 'details']">{{rating.title}}</button></span>
+               <span><button mat-flat-button [routerLink]="['/performer', rating.performerId, 'details']">{{rating.name}}</button></span>
               
               <div *ngIf="authorities.includes('ROLE_USER') && loggedUsername == rating.userName">
-               <button mat-raised-button [routerLink]="['/rating', rating.ratingId, 'edit']" color="primary">Edit</button>
-               <button mat-raised-button (click)="remove(rating)" color="warn">Remove</button>
+                  <span><button mat-flat-button [routerLink]="['/rating', rating.ratingId, 'edit']" color="primary"><mat-icon>edit</mat-icon> Edit</button></span>
+                  <span><button mat-flat-button (click)="remove(rating)" color="warn"><mat-icon>delete</mat-icon> Remove</button></span>
               </div>
+            </mat-toolbar>
           </div>
         </td>
     </ng-container>

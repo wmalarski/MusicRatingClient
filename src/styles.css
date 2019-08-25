@@ -14,3 +14,24 @@
 body {
   margin: 0;
 }
+
+.element-description {
+  padding: 16px;
+}
+
+.element-description-attribution {
+  opacity: 0.5;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.example-button-row button, .example-button-row a {
+  margin-right: 8px;
+}
+
+.shaddles {
+  transition: none !important;
+  box-shadow: none !important;
+}

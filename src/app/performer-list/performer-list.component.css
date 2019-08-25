@@ -1,9 +1,14 @@
+
 .row {
   display: flex;
 }
 
 .column {
   flex: 50%;
+}
+
+.side {
+  width: 50%;
 }
 
 .container {

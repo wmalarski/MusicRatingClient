@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { PerformerService } from '../services/performer/performer.service';
 import { Performer } from '../model/performer';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator, MatSort, MatDrawer } from '@angular/material';
 import {merge, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { PerformerDetailComponent } from '../performer-detail/performer-detail.component';
@@ -26,6 +26,7 @@ export class PerformerListComponent implements OnInit {
   performers: Performer[];
   columnsToDisplay = ['name', 'average', 'albumCount', 'ratingsCount'];
   authorities: string[] = [];
+  opened: boolean;
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -34,6 +35,7 @@ export class PerformerListComponent implements OnInit {
   query: string = '';
   queryChanged: EventEmitter<any> = new EventEmitter();
 
+  @ViewChild(MatDrawer) matDrawer: MatDrawer;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(PerformerDetailComponent) performerDetail: PerformerDetailComponent;
@@ -82,5 +84,11 @@ export class PerformerListComponent implements OnInit {
     }
     
   }
+
+  // setPerformer(performer) {
+  //   if (performer) {
+  //     matDrawer.
+  //   }
+  // }
 
 }
