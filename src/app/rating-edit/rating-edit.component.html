@@ -1,7 +1,9 @@
+
+<mat-card class="shaddles">
 <mat-card>
     <form #ratingForm="ngForm" (ngSubmit)="save(ratingForm.value)">
       <mat-card-header>
-        <mat-card-title><h2>{{rating.ratingId ? 'Edit' : 'Add'}} Rating</h2></mat-card-title>
+        <mat-card-title>{{rating.ratingId ? 'Edit' : 'Add'}} Rating</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         
@@ -25,7 +27,7 @@
 
         <p>
         <mat-form-field>
-          <input matInput placeholder="Score" 
+          <input matInput placeholder="Score" type="number"
           [(ngModel)]="rating.rate" required name="rate" #rate>
         </mat-form-field>
       </p>
@@ -35,14 +37,19 @@
             [(ngModel)]="rating.description" required name="description" #description>
           </mat-form-field>
         </p>
-  
+
       </mat-card-content>
-      
-      <mat-card-actions>
-        <button mat-raised-button color="primary" type="submit"
-                [disabled]="!ratingForm.form.valid">Save</button>
-        <a mat-button (click)="goBack()">Cancel</a>
-      </mat-card-actions>
-    
+
+      <mat-card-footer>
+          <mat-toolbar class="example-button-row">
+            <span><button mat-flat-button color="primary" type="submit"
+      [disabled]="!ratingForm.form.valid">Save</button></span>
+        <span><a mat-flat-button (click)="goBack()">Cancel</a></span>
+
+      </mat-toolbar>
+    </mat-card-footer>
+
+
     </form>
   </mat-card>
+</mat-card>

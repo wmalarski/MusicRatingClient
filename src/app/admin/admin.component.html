@@ -8,7 +8,7 @@
         <mat-form-field>
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
         </mat-form-field>
-        <div class="container mat-elevation-z8">
+        <div class="container">
   
         <div class="loading-shade"
         *ngIf="isLoadingResults || isRateLimitReached">
@@ -23,8 +23,7 @@
           <table mat-table
             [dataSource]="users" 
             multiTemplateDataRows
-            matSort matSortActive="created" matSortDisableClear matSortDirection="desc"
-            class="mat-elevation-z8">
+            matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
   
             <!-- Data -->
             <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">

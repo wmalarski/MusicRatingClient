@@ -13,7 +13,6 @@ import { environment } from 'src/environments/environment';
 export class RatingService {
 
   private URL_RATINGS = environment.api + '/ratings';
-  private URL_RATINGS_SAVE = this.URL_RATINGS + '/save';
   private URL_FIND_USER = this.URL_RATINGS + '/user';
   private URL_FIND_ALBUM = this.URL_RATINGS + '/album';
 
@@ -48,7 +47,7 @@ export class RatingService {
   }
 
   save(rating: NgForm): any {
-    return this.http.post(this.URL_RATINGS_SAVE, rating);
+    return this.http.post(this.URL_RATINGS, rating);
   }
 
   get(ratingId: string): Observable<Rating> {
@@ -58,7 +57,7 @@ export class RatingService {
   remove(rating: Rating): Observable<{}> { 
     return this.http.delete(this.URL_RATINGS, {
       params: {
-        
+        ratingId: rating.ratingId.toString()
       }
     });
   }

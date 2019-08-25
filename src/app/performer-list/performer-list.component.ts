@@ -84,11 +84,4 @@ export class PerformerListComponent implements OnInit {
     }
     
   }
-
-  // setPerformer(performer) {
-  //   if (performer) {
-  //     matDrawer.
-  //   }
-  // }
-
 }

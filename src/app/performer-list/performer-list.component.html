@@ -45,8 +45,7 @@
             <table mat-table
                [dataSource]="performers" 
                multiTemplateDataRows
-               matSort matSortActive="created" matSortDisableClear matSortDirection="desc"
-               class="mat-elevation-z8">
+               matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
         
               <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
                 <th mat-header-cell *matHeaderCellDef> {{column}} </th>
@@ -98,7 +97,7 @@
   <mat-card-content>
 
 
-      <div class="container mat-elevation-z8">
+      <div class="container">
 
     <div class="loading-shade"
       *ngIf="isLoadingResults || isRateLimitReached">
@@ -112,8 +111,7 @@
     <table mat-table
        [dataSource]="performers" 
        multiTemplateDataRows
-       matSort matSortActive="created" matSortDisableClear matSortDirection="desc"
-       class="mat-elevation-z8">
+       matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
 
       <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
         <th mat-header-cell *matHeaderCellDef> {{column}} </th>

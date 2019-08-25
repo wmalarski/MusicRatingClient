@@ -1,17 +1,21 @@
-<mat-card>
-  <mat-card-title *ngIf="album">Album Details: {{album.name}}-{{album.title}} ({{album.year}})</mat-card-title>
-
-  <mat-card-actions *ngIf="album">
-    <button mat-button [routerLink]="['/performer', album.performerId, 'details']">{{album.name}}</button>
-
-    <div *ngIf="authorities.includes('ROLE_USER')">
-      <button mat-raised-button [routerLink]="['/album', album.albumId, 'edit']" color="primary">Edit</button>
-      <button mat-raised-button [routerLink]="['/album', album.albumId, 'rate']" color="accent">Rate</button>
-      <button mat-raised-button (click)="remove()" color="warn">Remove</button>
-    </div>
-  </mat-card-actions>
+<mat-card class="shaddles">
+    <mat-card-header>
+  <mat-card-title *ngIf="album">{{album.name}}-{{album.title}} ({{album.year}})</mat-card-title>
+</mat-card-header>
 
   <mat-card-content>
+
+      <mat-toolbar *ngIf="album" class="example-button-row">
+          <span><button mat-flat-button [routerLink]="['/performer', album.performerId, 'details']"><mat-icon>library_books</mat-icon> {{album.name}}</button></span>
+          <span class="example-spacer"></span>
+          <div *ngIf="authorities.includes('ROLE_USER')">
+            <span><button mat-flat-button [routerLink]="['/album', album.albumId, 'rate']" color="accent"><mat-icon>rate_review</mat-icon> Rate</button></span>
+              <span><button mat-flat-button [routerLink]="['/album', album.albumId, 'edit']" color="primary"><mat-icon>edit</mat-icon> Edit</button></span>
+              <span><button mat-flat-button (click)="remove()" color="warn"><mat-icon>delete</mat-icon> Remove</button></span>
+          </div>
+      
+        </mat-toolbar>
+      
 
     <app-ratings-list 
       [resultsLength]="resultsLength" 
