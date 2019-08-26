@@ -1,18 +1,17 @@
-
 <mat-card class="shaddles">
-<mat-card>
+  <mat-card>
     <form #ratingForm="ngForm" (ngSubmit)="save(ratingForm.value)">
       <mat-card-header>
         <mat-card-title>{{rating.ratingId ? 'Edit' : 'Add'}} Rating</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        
+
         <input type="hidden" name="albumId" [(ngModel)]="rating.albumId">
-        
+
         <input type="hidden" name="ratingId" [(ngModel)]="rating.ratingId">
 
         <input type="hidden" name="userName" [(ngModel)]="rating.userName">
-        
+
         <div *ngIf="album">
           <p>Title: {{album.title}}</p>
           <p>Artist: {{album.name}}</p>
@@ -20,34 +19,33 @@
         </div>
 
         <div *ngIf="rating.ratingId">
-            <p>Title: {{rating.title}}</p>
-            <p>Artist: {{rating.name}}</p>
-            <p>Year: {{rating.year}}</p>
+          <p>Title: {{rating.title}}</p>
+          <p>Artist: {{rating.name}}</p>
+          <p>Year: {{rating.year}}</p>
         </div>
 
         <p>
-        <mat-form-field>
-          <input matInput placeholder="Score" type="number"
-          [(ngModel)]="rating.rate" required name="rate" #rate>
-        </mat-form-field>
-      </p>
+          <mat-form-field>
+            <input matInput placeholder="Score" type="number" min="0.1" max="9.9" step="0.1" [(ngModel)]="rating.rate"
+              required name="rate" #rate>
+          </mat-form-field>
+        </p>
         <p>
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Description"
-            [(ngModel)]="rating.description" required name="description" #description>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Description" [(ngModel)]="rating.description" name="description" #description>
           </mat-form-field>
         </p>
 
       </mat-card-content>
 
       <mat-card-footer>
-          <mat-toolbar class="example-button-row">
-            <span><button mat-flat-button color="primary" type="submit"
-      [disabled]="!ratingForm.form.valid">Save</button></span>
-        <span><a mat-flat-button (click)="goBack()">Cancel</a></span>
+        <mat-toolbar class="example-button-row">
+          <span><button mat-flat-button color="primary" type="submit"
+              [disabled]="!ratingForm.form.valid">Save</button></span>
+          <span><a mat-flat-button (click)="goBack()">Cancel</a></span>
 
-      </mat-toolbar>
-    </mat-card-footer>
+        </mat-toolbar>
+      </mat-card-footer>
 
 
     </form>

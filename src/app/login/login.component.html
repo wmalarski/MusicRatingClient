@@ -1,58 +1,65 @@
-
-
-<mat-card *ngIf="isLoggedIn; else loggedOut">
+<mat-card *ngIf="isLoggedIn; else loggedOut" class="shaddles">
   Logged in as <b>{{username}}</b>.
 </mat-card>
 
-  
+
 <ng-template #loggedOut>
-      
-  <mat-card>
-    <mat-card-title>Login</mat-card-title>      
-  
-    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate  class="example-form">
-      <mat-card-content>
-        <p>     
-          <mat-form-field>
-            <input matInput placeholder="Username" [(ngModel)]="form.username" name="username" 
-              #username="ngModel" required>
-          </mat-form-field>
-        </p>
 
-          <!-- <div *ngIf="f.submitted && username.invalid" class="error">
-            <div *ngIf="username.errors.required"><p class="error">Username is required</p></div>     
-          </div> -->
+  <mat-card class="shaddles">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="example-form">
+        <mat-card-content>
 
-        <p>
-          <mat-form-field>
-            <input matInput placeholder="Password" [(ngModel)]="form.password" type="password" 
-              name="password" #password="ngModel" minlength="6" required>      
-          </mat-form-field>
-        </p>
-
-        <!-- <div *ngIf="f.submitted && password.invalid" class="error">
-          <div *ngIf="password.errors.required"><p class="error">Password is required</p></div>
-          <div *ngIf="password.errors.minlength"><p class="error">Password must be at least 6 characters</p></div>
-        </div> -->
-        
-      </mat-card-content>
-
-      <mat-card-actions>
-        <div class="button">
-          <button mat-raised-button color="primary">Login</button>
-          <p *ngIf="f.submitted && isLoginFailed" class="error">
-            Login failed: {{errorMessage}}
+          <p>
+            <mat-form-field>
+              <input matInput placeholder="Username" [(ngModel)]="form.username" name="username" #username="ngModel"
+                minlength="3" maxlength="60" required>
+            </mat-form-field>
           </p>
-        </div>
-      </mat-card-actions>
 
-    
+          <div *ngIf="f.submitted && username.invalid">
+            <div *ngIf="username.errors.required">
+              <p class="alert alert-warning">Username is required</p>
+            </div>
+          </div>
+
+          <p>
+            <mat-form-field>
+              <input matInput placeholder="Password" [(ngModel)]="form.password" type="password" name="password"
+                #password="ngModel" minlength="6" maxlength="40" required>
+            </mat-form-field>
+          </p>
+
+          <div *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required">
+              <p class="alert alert-warning">Password is required</p>
+            </div>
+            <div *ngIf="password.errors.minlength">
+              <p class="alert alert-warning">Password must be at least 6 characters</p>
+            </div>
+          </div>
+
+          <p *ngIf="f.submitted && isLoginFailed" class="alert alert-warning">
+            Login failed: <br />{{errorMessage}}
+          </p>
 
 
+        </mat-card-content>
 
 
-  </form>
+        <mat-card-footer>
+          <mat-toolbar class="example-button-row">
+            <div class="button">
+              <button mat-flat-button color="primary">Login</button>
+            </div>
+          </mat-toolbar>
+        </mat-card-footer>
 
-</mat-card>
-      
+      </form>
+
+    </mat-card>
+  </mat-card>
 </ng-template>

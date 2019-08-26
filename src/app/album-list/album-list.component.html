@@ -1,7 +1,6 @@
 <div class="container">
 
-  <div class="loading-shade"
-    *ngIf="isLoadingResults || isRateLimitReached">
+  <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
     <div class="rate-limit-reached" *ngIf="isRateLimitReached">
       API rate limit has been reached. It will be reset in one minute.
@@ -10,49 +9,62 @@
 
   <div class="table-container">
 
-  <table mat-table
-        [dataSource]="albums" multiTemplateDataRows
-        matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
+    <table mat-table [dataSource]="albums" multiTemplateDataRows matSort matSortActive="created" matSortDisableClear
+      matSortDirection="desc">
 
-    <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-      <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-      <td mat-cell *matCellDef="let album"> {{album[column]}} </td>    
-    </ng-container>
-
-    <ng-container matColumnDef="expandedDetail">
-        <td mat-cell *matCellDef="let album" [attr.colspan]="columnsToDisplay.length">
-            <div class="element-detail" [@detailExpand]="album == expandedElement ? 'expanded' : 'collapsed'">
-                
-                <mat-toolbar class="example-button-row">  
-                    <!-- <mat-toolbar-row > -->
-                      <span><button mat-flat-button [routerLink]="['/performer', album.performerId, 'details']"><mat-icon>library_books</mat-icon> {{album.name}}</button></span>
-                      <span><button mat-flat-button [routerLink]="['/album', album.albumId, 'details']"><mat-icon>album</mat-icon> Details</button></span>
-                    <!-- </mat-toolbar-row> -->
-
-                    <span class="example-spacer"></span>
-                  
-                    <div *ngIf="authorities.includes('ROLE_USER')">
-                      <span><button mat-flat-button [routerLink]="['/album', album.albumId, 'rate']" color="accent"><mat-icon>rate_review</mat-icon> Rate</button></span>
-                      <span><button mat-flat-button [routerLink]="['/album', album.albumId, 'edit']" color="primary"><mat-icon>edit</mat-icon> Edit</button></span>
-                      <span><button mat-flat-button (click)="remove(album)" color="warn"><mat-icon>delete</mat-icon> Remove</button></span>
-                    </div>
-                    
-                  <!-- </mat-toolbar-row> -->
-                </mat-toolbar>
-            </div>
-          </td>
+      <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+        <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+        <td mat-cell *matCellDef="let album"> {{album[column]}} </td>
       </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-      <tr mat-row *matRowDef="let album; columns: columnsToDisplay;"
-          [class.expanded-row]="expandedElement === album"
-          (click)="expandedElement = expandedElement === album ? null : album">
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let album" [attr.colspan]="columnsToDisplay.length">
+          <div class="element-detail" [@detailExpand]="album == expandedElement ? 'expanded' : 'collapsed'">
+
+            <mat-toolbar class="example-button-row">
+              <!-- <mat-toolbar-row > -->
+              <span><button mat-flat-button [routerLink]="['/performer', album.performerId, 'details']">
+                  <mat-icon>library_books</mat-icon> {{album.name}}
+                </button></span>
+              <span><button mat-flat-button [routerLink]="['/album', album.albumId, 'details']">
+                  <mat-icon>album</mat-icon> Details
+                </button></span>
+
+              <div class="hidden-xs hidden-sm col-md-1"></div>
+
+              <span><a href="https://www.youtube.com/results?search_query={{album.name}} {{album.title}}">
+                <button class="mat-flat-button"> Youtube</button>
+              </a></span>
+
+              <span class="example-spacer"></span>
+
+              <div *ngIf="authorities.includes('ROLE_USER')">
+                <span><button mat-flat-button [routerLink]="['/album', album.albumId, 'rate']" color="accent">
+                    <mat-icon>rate_review</mat-icon> Rate
+                  </button></span>
+                <span><button mat-flat-button [routerLink]="['/album', album.albumId, 'edit']" color="primary">
+                    <mat-icon>edit</mat-icon> Edit
+                  </button></span>
+                <span><button mat-flat-button (click)="remove(album)" color="warn">
+                    <mat-icon>delete</mat-icon> Remove
+                  </button></span>
+              </div>
+
+              <!-- </mat-toolbar-row> -->
+            </mat-toolbar>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row *matRowDef="let album; columns: columnsToDisplay;" [class.expanded-row]="expandedElement === album"
+        (click)="expandedElement = expandedElement === album ? null : album">
       </tr>
       <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
 
-  </table>
+    </table>
 
-  <mat-paginator [length]="resultsLength" [pageSize]="size"></mat-paginator>
+    <mat-paginator [length]="resultsLength" [pageSize]="size"></mat-paginator>
 
   </div>
 </div>

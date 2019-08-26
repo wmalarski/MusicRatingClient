@@ -3,10 +3,10 @@ import { UserService } from '../services/user/user.service';
 import { User } from '../model/user';
 import { MatPaginator, MatSort } from '@angular/material';
 import { TokenStorageService } from '../services/auth/token-storage.service';
-import {merge, of as observableOf} from 'rxjs';
-import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import { merge, of as observableOf } from 'rxjs';
+import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { AuthService } from '../services/auth/auth.service';
- 
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -35,7 +35,7 @@ export class AdminComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private authService: AuthService
   ) { }
- 
+
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.authorities = this.tokenStorage.getAuthorities();
@@ -50,7 +50,7 @@ export class AdminComponent implements OnInit {
           switchMap(() => {
             this.isLoadingResults = true;
             if (this.query == '') {
-              return this.userService.findAll(this.paginator.pageSize, this.paginator.pageIndex);            
+              return this.userService.findAll(this.paginator.pageSize, this.paginator.pageIndex);
             }
             return this.userService.findByName(this.query, this.paginator.pageSize, this.paginator.pageIndex);
           }),
@@ -58,7 +58,7 @@ export class AdminComponent implements OnInit {
             this.isLoadingResults = false;
             this.isRateLimitReached = false;
             this.resultsLength = data.page.totalElements;
-            if (this.resultsLength == 0) 
+            if (this.resultsLength == 0)
               return [];
             return data._embedded.userResponses;
           }),
@@ -69,9 +69,9 @@ export class AdminComponent implements OnInit {
             return observableOf([]);
           })
         ).subscribe(users => {
-          this.users = users      
+          this.users = users
         });
-      }
+    }
   }
 
   applyFilter(filterValue: string) {
@@ -80,7 +80,7 @@ export class AdminComponent implements OnInit {
       this.paginator.pageIndex = 0
       this.queryChanged.emit(null);
     }
-    
+
   }
 
   revoke_admin(user: User) {

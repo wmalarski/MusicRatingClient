@@ -1,32 +1,31 @@
-<form [formGroup]="performerForm" (ngSubmit)="onSubmit()"
-    class="example-form">
-  
+<form [formGroup]="performerForm" (ngSubmit)="onSubmit()" class="example-form">
+
   <mat-card>
 
-      <mat-card-header>
-          <mat-card-title>Add artist</mat-card-title>
-        </mat-card-header>
-    
-    <mat-card-content>
-    <mat-form-field class="example-full-width">
-      <input matInput type="text" required formControlName="name" placeholder="Name">
-    </mat-form-field>
+    <mat-card-header>
+      <mat-card-title>Add artist</mat-card-title>
+    </mat-card-header>
 
-    <table mat-table [dataSource]="dataSource" formArrayName="albums">
+    <mat-card-content>
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" required formControlName="name" placeholder="Name" minlength="1" maxlength="40">
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSource" formArrayName="albums">
         <!-- Row definitions -->
         <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
         <tr mat-row *matRowDef="let row; let i = index; columns: displayColumns;"></tr>
-    
+
         <!-- Column definitions -->
         <ng-container matColumnDef="title">
           <th mat-header-cell *matHeaderCellDef> Title </th>
-          <td mat-cell *matCellDef="let row; let index = index" [formGroupName]="index"> 
-              <mat-form-field class="example-full-width">
-            <input required matInput formControlName="title" placeholder="Title">
+          <td mat-cell *matCellDef="let row; let index = index" [formGroupName]="index">
+            <mat-form-field class="example-full-width">
+              <input required matInput formControlName="title" placeholder="Title" minlength="1" maxlength="40">
             </mat-form-field>
           </td>
         </ng-container>
-    
+
         <ng-container matColumnDef="year">
           <th mat-header-cell *matHeaderCellDef> Year </th>
           <td mat-cell *matCellDef="let row; let index = index" [formGroupName]="index">
@@ -35,34 +34,39 @@
             </mat-form-field>
           </td>
         </ng-container>
-  
+
         <ng-container matColumnDef="remove">
-            <th mat-header-cell *matHeaderCellDef> Remove </th>
-            <td mat-cell *matCellDef="let row; let index = index" [formGroupName]="index">
-              <button mat-flat-button (click)="removeAlbum(index);false" color="warn"><mat-icon>delete</mat-icon> Remove</button>
-            </td>
-          </ng-container>
-  
+          <th mat-header-cell *matHeaderCellDef> Remove </th>
+          <td mat-cell *matCellDef="let row; let index = index" [formGroupName]="index">
+            <button mat-flat-button (click)="removeAlbum(index);false" color="warn">
+              <mat-icon>delete</mat-icon> Remove
+            </button>
+          </td>
+        </ng-container>
+
       </table>
 
       <mat-card-footer>
-      <mat-toolbar class="example-button-row">
-        
+        <mat-toolbar class="example-button-row">
+
           <span><button mat-flat-button (click)="addAlbum();false">
-            <mat-icon>add</mat-icon> Add Album</button></span>
-            
-            <span><button mat-flat-button type="submit" [disabled]="!performerForm.valid" color="primary">Submit</button></span>
-      
-            <span><button mat-flat-button *ngIf="_performer" [routerLink]="['/performer', _performer.performerId, 'details' ]">Back</button></span>
-            
-      
-          </mat-toolbar>
-        </mat-card-footer>
+              <mat-icon>add</mat-icon> Add Album
+            </button></span>
 
-  </mat-card-content>
-</mat-card>
+          <span><button mat-flat-button type="submit" [disabled]="!performerForm.valid"
+              color="primary">Submit</button></span>
+
+          <span><button mat-flat-button *ngIf="_performer"
+              [routerLink]="['/performer', _performer.performerId, 'details' ]">Back</button></span>
 
 
-  
-    
+        </mat-toolbar>
+      </mat-card-footer>
+
+    </mat-card-content>
+  </mat-card>
+
+
+
+
 </form>
