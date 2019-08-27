@@ -5,7 +5,6 @@ import { Rating } from '../model/rating';
 import { RatingsListComponent } from '../ratings-list/ratings-list.component';
 import {Subscription, merge, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
-import { UserService } from '../services/user/user.service';
 import { RatingService } from '../services/rating/rating.service';
 
 @Component({
@@ -32,7 +31,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService,
     private ratingService: RatingService
   ) { }
 
